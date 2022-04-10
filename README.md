@@ -5,6 +5,10 @@ Simple package to send embeds to a Discord Webhook with Go
 ## Usage
 ### Send Webhook with a single Embed
 ```
+import (
+    "github.com/JuandeJuni/discordhooks"
+)
+
 //Creating the Embed
 embed = discordhooks.Embed{
     Title: "Title",
