@@ -40,4 +40,5 @@ embed = discordhooks.Embed{
 //Sending the webhook
 
 discordhooks.SendEmbed("https://discordapp.com/api/webhooks/your/webhook", embed)
+
 ```
