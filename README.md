@@ -1,15 +1,22 @@
 # DiscordHooks (Simple discord webhooks for Go)
 Simple package to send embeds to a Discord Webhook with Go
 ## Installation
+
 ```go get github.com/JuandeJuni/discordhooks```
+
 ## Usage
+
 ### Send Webhook with a single Embed
+
 ```
+//Import the package
+
 import (
     "github.com/JuandeJuni/discordhooks"
 )
 
 //Creating the Embed
+
 embed = discordhooks.Embed{
     Title: "Title",
     Description: "Description",
@@ -31,5 +38,6 @@ embed = discordhooks.Embed{
 }
 
 //Sending the webhook
+
 discordhooks.SendEmbed("https://discordapp.com/api/webhooks/your/webhook", embed)
 ```
