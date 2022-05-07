@@ -37,7 +37,7 @@ type Hook struct {
 	Embeds     []Embed `json:"embeds"`
 }
 
-func executeWebhook(link string, data []byte) {
+func executeWebhook(link string, data []byte) error {
 
 	req, err := http.NewRequest("POST", link, bytes.NewBuffer(data))
 	if err != nil {
@@ -55,6 +55,7 @@ func executeWebhook(link string, data []byte) {
 		time.Sleep(time.Second * 5)
 		executeWebhook(link, data)
 	}
+	return err
 }
 func SendEmbeds(link string, embeds []Embed) {
 	hook := Hook{
