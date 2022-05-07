@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -37,7 +38,7 @@ type Hook struct {
 	Embeds     []Embed `json:"embeds"`
 }
 
-func executeWebhook(link string, data []byte) error {
+func executeWebhook(link string, data []byte) {
 
 	req, err := http.NewRequest("POST", link, bytes.NewBuffer(data))
 	if err != nil {
@@ -46,6 +47,9 @@ func executeWebhook(link string, data []byte) error {
 	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
 	client := &http.Client{}
 	resp, err := client.Do(req)
+	body, err := ioutil.ReadAll(resp.Body)
+	log.Println(string(body))
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -55,7 +59,6 @@ func executeWebhook(link string, data []byte) error {
 		time.Sleep(time.Second * 5)
 		executeWebhook(link, data)
 	}
-	return err
 }
 func SendEmbeds(link string, embeds []Embed) {
 	hook := Hook{
