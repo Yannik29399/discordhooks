@@ -30,11 +30,17 @@ type Embed struct {
 	Footer      Footer    `json:"footer"`
 	Fields      []Field   `json:"fields"`
 }
+type Attachment struct {
+	Id          string `json:"id"`
+	Description string `json:"description"`
+	Filename    string `json:"filename"`
+}
 type Hook struct {
-	Username   string  `json:"username"`
-	Avatar_url string  `json:"avatar_url"`
-	Content    string  `json:"content"`
-	Embeds     []Embed `json:"embeds"`
+	Username    string       `json:"username"`
+	Avatar_url  string       `json:"avatar_url"`
+	Content     string       `json:"content"`
+	Embeds      []Embed      `json:"embeds"`
+	Attachments []Attachment `json:"attachments"`
 }
 
 func executeWebhook(link string, data []byte) {
