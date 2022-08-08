@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -52,11 +53,17 @@ func ExecuteWebhook(link string, data []byte) error {
 	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
 	client := &http.Client{}
 	resp, err := client.Do(req)
-
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
+	bodyText, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if resp.StatusCode != 200 {
+		fmt.Printf("%s\n", bodyText)
+	}
 	if resp.StatusCode == 429 {
 		fmt.Println("Rate limit reached")
 		time.Sleep(time.Second * 5)
