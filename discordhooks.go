@@ -30,6 +30,7 @@ type Embed struct {
 	Thumbnail   Thumbnail `json:"thumbnail"`
 	Footer      Footer    `json:"footer"`
 	Fields      []Field   `json:"fields"`
+	Timestamp   time.Time `json:"timestamp"`
 }
 type Attachment struct {
 	Id          string `json:"id"`
