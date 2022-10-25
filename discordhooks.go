@@ -31,7 +31,15 @@ type Embed struct {
 	Footer      Footer    `json:"footer"`
 	Fields      []Field   `json:"fields"`
 	Timestamp   time.Time `json:"timestamp"`
+	Author      Author    `json:"author"`
 }
+
+type Author struct {
+	Name     string `json:"name"`
+	Icon_URL string `json:"icon_url"`
+	Url      string `json:"url"`
+}
+
 type Attachment struct {
 	Id          string `json:"id"`
 	Description string `json:"description"`
